@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Mahasiswa Lintas Kelas</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-blue-600 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">SinergiKelas</span>
+                </div>
+                <div class="hidden md:flex space-x-4">
+                    <a href="#beranda" class="hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium">Beranda</a>
+                    <a href="#jadwal" class="hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium">Jadwal & Ruang</a>
+                    <a href="#materi" class="hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium">Pusat Unduhan</a>
+                    <a href="#komunitas" class="hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium">Hubungi Komting</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (BERANDA) -->
+    <header id="beranda" class="bg-gradient-to-r report from-blue-600 to-indigo-700 text-white py-20 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Hub Kolaborasi & Informasi Lintas Kelas</h1>
+            <p class="text-xl text-blue-100 mb-8">Satu platform untuk berbagi jadwal kuliah, materi dosen, catatan kating, dan koordinasi angkatan.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#jadwal" class="bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-50 transition">Lihat Jadwal</a>
+                <a href="#materi" class="bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg border border-blue-400 hover:bg-blue-600 transition">Cari Materi</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- JADWAL & RUANG KULIAH -->
+        <section id="jadwal" class="scroll-mt-20">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">🗓️ Jadwal Hari Ini & Lokasi Ruangan</h2>
+                    <p class="text-gray-600">Pantau jadwal agar tidak salah masuk kelas atau bentrok.</p>
+                </div>
+                <!-- Filter Kelas -->
+                <div class="flex gap-2">
+                    <button onclick="filterKelas('semua')" id="btn-semua" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium shadow shadow-blue-200">Semua Kelas</button>
+                    <button onclick="filterKelas('kelas-a')" id="btn-kelas-a" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">Kelas A</button>
+                    <button onclick="filterKelas('kelas-b')" id="btn-kelas-b" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">Kelas B</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card Jadwal 1 -->
+                <div class="jadwal-card kelas-a bg-white p-6 rounded-xl shadow-xs border border-gray-100 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm">Kelas A</span>
+                        <span class="text-gray-500 text-sm font-medium"><i class="fa-regular fa-clock mr-1"></i> 08:00 - 10:30 WIB</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-1">Pemrograman Web Lanjut</h3>
+                    <p class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-user-tie mr-1"></i> Bpk. Dr. Eng. Hermawan</p>
+                    <div class="bg-gray-50 p-3 rounded-lg flex items-center gap-2 text-sm text-gray-700">
+                        <i class="fa-solid fa-location-dot text-red-500"></i>
+                        <span>Laboratorium Komputer Terpadu (Gedung C, Lt. 2)</span>
+                    </div>
+                </div>
+
+                <!-- Card Jadwal 2 -->
+                <div class="jadwal-card kelas-b bg-white p-6 rounded-xl shadow-xs border border-gray-100 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm">Kelas B</span>
+                        <span class="text-gray-500 text-sm font-medium"><i class="fa-regular fa-clock mr-1"></i> 10:45 - 13:15 WIB</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-1">Kecerdasan Buatan (AI)</h3>
+                    <p class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-user-tie mr-1"></i> Ibu Shinta Nuraini, M.T.</p>
+                    <div class="bg-gray-50 p-3 rounded-lg flex items-center gap-2 text-sm text-gray-700">
+                        <i class="fa-solid fa-location-dot text-red-500"></i>
+                        <span>Ruang Kuliah Teori 4.02 (Gedung Utama, Lt. 4)</span>
+                    </div>
+                </div>
+
+                <!-- Card Jadwal 3 -->
+                <div class="jadwal-card kelas-a bg-white p-6 rounded-xl shadow-xs border border-gray-100 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm">Kelas A</span>
+                        <span class="text-gray-500 text-sm font-medium"><i class="fa-regular fa-clock mr-1"></i> 14:00 - 16:30 WIB</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-1">Jaringan Komputer</h3>
+                    <p class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-user-tie mr-1"></i> Bpk. Rian Hidayat, M.Kom.</p>
+                    <div class="bg-gray-50 p-3 rounded-lg flex items-center gap-2 text-sm text-gray-700">
+                        <i class="fa-solid fa-location-dot text-red-500"></i>
+                        <span>Gedung Kehutanan - Ruang Seminar R.201</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PUSAT UNDUHAN & MATERI (RESOURCE SHARING) -->
+        <section id="materi" class="scroll-mt-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900">📚 Pusat Dokumen & Folder Google Drive</h2>
+                <p class="text-gray-600">Akses cepat ke materi perkuliahan, bank soal UTS/UAS, dan catatan kelompok.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Drive Bersama Angkatan -->
+                <div class="bg-radial from-blue-50 to-white p-8 rounded-2xl border border-blue-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center text-xl mb-4 shadow">
+                            <i class="fa-brands fa-google-drive"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Google Drive Kuliah Utama</h3>
+                        <p class="text-gray-600 text-sm mb-6">Berisi sub-folder per mata kuliah semester ini. Terbuka otomatis untuk email berdomain kampus kamu.</p>
+                    </div>
+                    <!-- Silakan ganti href dengan link Google Drive asli Anda -->
+                    <a href="https://google.com" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                        Buka Drive Angkatan <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Tautan Materi Cepat per Minggu -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xs space-y-4">
+                    <h3 class="font-bold text-lg text-gray-900"><i class="fa-solid fa-folder-open text-yellow-500 mr-2"></i>Akses Materi Terbaru</h3>
+                    <div class="divide-y divide-gray-100">
+                        <div class="py-3 flex justify-between items-center">
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm">Slide Pertemuan 5 - AI Sinergi</h4>
+                                <p class="text-xs text-gray-500">Format: PDF | Diunggah Kemarin</p>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-semibold"><i class="fa-solid fa-cloud-arrow-down mr-1"></i> Unduh</a>
+                        </div>
+                        <div class="py-3 flex justify-between items-center">
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm">Kisi-kisi Modul Praktikum Web 2</h4>
+                                <p class="text-xs text-gray-500">Format: ZIP | Diunggah 3 hari lalu</p>
